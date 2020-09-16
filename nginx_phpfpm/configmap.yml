@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+data:
+  nginx.conf: |
+     events {
+
+     }
+
+     http {
+       server {
+         listen         8096 default_server;
+         listen         [::]:8096 default_server;
+         server_name  _;
+         root      /var/www/html;
+         index index index.html index.htm index.php;
+         location / {
+             try_files $uri $uri/ =404;
+           }
+       }
+     }
